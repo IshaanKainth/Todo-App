@@ -2,7 +2,9 @@ from flask import Flask,render_template,request,redirect,jsonify
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 app = Flask(__name__,template_folder='template')
-app.config['SQLALCHEMY_DATABASE_URI']='mysql+pymysql://root:IshaanKainth-1234@localhost:3306/todo'
+engine = create_engine("mysql+mysqldb://u:p@host/db", pool_size=10, max_overflow=20)
+app.config['SQLALCHEMY_DATABASE_URI']=engine
+# 'mysql+pymysql://root:IshaanKainth-1234@localhost:3306/todo'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
 db = SQLAlchemy(app)
 
